@@ -55,8 +55,8 @@ class LoFTR(nn.Module):
 
         # 2. coarse-level loftr module
         # add featmap with positional encoding, then flatten it to sequence [N, HW, C]
-        feat_c0 = rearrange(self.pos_encoding(feat_c0), 'n c h w -> n (h w) c')
-        feat_c1 = rearrange(self.pos_encoding(feat_c1), 'n c h w -> n (h w) c')
+        feat_c0 = self.pos_encoding(feat_c0)
+        feat_c1 = self.pos_encoding(feat_c1)
 
         mask_c0 = mask_c1 = None  # mask is useful in training
         if 'mask0' in data:
